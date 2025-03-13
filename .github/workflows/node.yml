@@ -9,11 +9,18 @@ jobs:
     steps:
       - name: Checkout 🛬
         uses: actions/checkout@v4
-      - name: Setup Node ⚙️
-        uses: ./.github/actions/setup-node
-      - name: Build typescript 📦
-        run: node --run build && find dist/main.js
-      - name: Lint code 💅
-        run: node --run lint
-      - name: Run tests ✅
-        run: node --run test
+
+      - name: Setup Bun ⚙️
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies 📦
+        run: bun install
+
+      - name: Build TypeScript 🔧
+        run: bun run build
+
+      - name: Lint Code 💅
+        run: bun run lint
+
+      - name: Run Tests ✅
+        run: bun run test
