@@ -11,6 +11,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
   my-service-production:
     container_name: my-service-production
     build:
@@ -72,3 +73,6 @@ services:
         'web-dashboard',
         '/tests/performance/contexts/users/get-users.mjs',
       ]
+
+volumes:
+  postgres_data:

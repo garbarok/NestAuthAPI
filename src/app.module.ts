@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserEntity } from './infrastructure/entities/user.entity';
-import { UserController } from './infrastructure/controllers/user.controller';
-import { UserService } from './application/services/user.service';
-import { CreateUserUseCase } from './application/use-cases/create-user.use-case';
-import { UserRepositoryImpl } from './infrastructure/repositories/user.repository.impl';
+
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -20,17 +19,14 @@ import { UserRepositoryImpl } from './infrastructure/repositories/user.repositor
         username: configService.get<string>('POSTGRES_USER'),
         password: configService.get<string>('POSTGRES_PASSWORD'),
         database: configService.get<string>('POSTGRES_DATABASE'),
-        entities: [UserEntity],
         synchronize: true,
+        autoLoadEntities: true,
+        logging: ['error', 'schema'],
       }),
     }),
-    TypeOrmModule.forFeature([UserEntity]),
-  ],
-  controllers: [UserController],
-  providers: [
-    UserService,
-    CreateUserUseCase,
-    { provide: 'UserRepository', useClass: UserRepositoryImpl },
+    UsersModule,
+    AuthModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
