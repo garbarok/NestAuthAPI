@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "**/*.ts",
+    "**/*.mts",
+    "**/*.cts",
+    "**/*.mjs",
+    "lint-staged.config.mjs",
+    ".*.js"
+  ]
+}
