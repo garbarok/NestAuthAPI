@@ -103,7 +103,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1",
     "unplugin-swc": "^1.5.1",
-    "vitest": "^3.0.8"
+    "vitest": "^4.0.1"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.35.0",
